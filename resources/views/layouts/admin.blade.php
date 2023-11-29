@@ -12,9 +12,14 @@ iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H
     <!-- Usando Vite -->
     @vite(['resources/js/app.js'])
 
-    <title>Home Boolpress Guest</title>
+    <title>Boolpress Admin @yield('title')</title>
 </head>
 <body>
-    @yield('content')
+    @include('admin.partials.header')
+
+    <div class="main-wrapper d-flex">
+        @include('admin.partials.sidebar')
+        @yield('content')
+    </div>
 </body>
 </html>
