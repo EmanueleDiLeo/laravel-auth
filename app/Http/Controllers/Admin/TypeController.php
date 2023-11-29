@@ -13,7 +13,8 @@ class TypeController extends Controller
      */
     public function index()
     {
-        //
+        $types = Type::orderBy('id')->paginate(10);
+        return view('admin.types.index', compact('types'));
     }
 
     /**
