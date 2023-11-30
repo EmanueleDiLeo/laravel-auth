@@ -10,7 +10,7 @@
             {{ session('deleted') }}
         </div>
     @endif
-
+    <h4 class="py-3">Nuova Tecnologia <a class="btn btn-primary" href="{{route('admin.technologies.create')}}"><i class="fa-solid fa-plus"></i></a></h4>
     <table class="table">
         <thead>
           <tr>

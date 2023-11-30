@@ -3,7 +3,9 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\TechnologyRequest;
 use App\Models\Technology;
+use App\Functions\Helper;
 use Illuminate\Http\Request;
 
 class TechnologyController extends Controller
@@ -22,15 +24,23 @@ class TechnologyController extends Controller
      */
     public function create()
     {
-        //
+        $title = 'Inserisci una nuova tecnologia';
+        $method = 'POST';
+        $route = route('admin.technologies.store');
+        $technology = null;
+        return view('admin.technologies.create-edit', compact('title','method', 'route', 'technology'));
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(TechnologyRequest $request)
     {
-        //
+        $form_data = $request->all();
+        $form_data['slug'] = Helper::generateSlug($form_data['name'], Technology::class);
+
+        $new_technology = Technology::create($form_data);
+        return redirect()->route('admin.technologies.show' , $new_technology);
     }
 
     /**
@@ -44,17 +54,27 @@ class TechnologyController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(Technology $technology)
     {
-        //
+        $title = 'Modifica tecnologia';
+        $method = 'PUT';
+        $route = route('admin.technologies.update', $technology);
+        return view('admin.technologies.create-edit', compact('title','method', 'route', 'technology'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(TechnologyRequest $request, Technology $technology)
     {
-        //
+        $form_data = $request->all();
+        if($form_data['name']!= $technology->name){
+            $form_data['slug'] = Helper::generateSlug($form_data['name'], Technology::class);
+        }else{
+            $form_data['slug'] = $technology->slug;
+        }
+        $technology->update($form_data);
+        return redirect()->route('admin.technologies.show', $technology);
     }
 
     /**

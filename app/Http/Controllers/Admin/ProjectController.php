@@ -3,8 +3,10 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\ProjectRequest;
 use Illuminate\Http\Request;
 use App\Models\Project;
+use App\Functions\Helper;
 
 class ProjectController extends Controller
 {
@@ -22,15 +24,24 @@ class ProjectController extends Controller
      */
     public function create()
     {
-        //
+        $title = 'Inserisci un nuovo progetto';
+        $method = 'POST';
+        $route = route('admin.projects.store');
+        $project = null;
+        return view('admin.projects.create-edit', compact('title','method', 'route', 'project'));
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(ProjectRequest $request)
     {
-        //
+        $form_data = $request->all();
+        $form_data['slug'] = Helper::generateSlug($form_data['name'], Project::class);
+        $form_data['date'] = date('Y-m-d');
+
+        $new_project = Project::create($form_data);
+        return redirect()->route('admin.technologies.show' , $new_project);
     }
 
     /**
@@ -44,17 +55,28 @@ class ProjectController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(Project $project)
     {
-        //
+        $title = 'Modifica progetto';
+        $method = 'PUT';
+        $route = route('admin.projects.update', $project);
+        return view('admin.projects.create-edit', compact('title','method', 'route', 'project'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(ProjectRequest $request, Project $project)
     {
-        //
+        $form_data = $request->all();
+        if($form_data['name']!= $project->name){
+            $form_data['slug'] = Helper::generateSlug($form_data['name'], Project::class);
+        }else{
+            $form_data['slug'] = $project->slug;
+        }
+        $form_data['date'] = date('Y-m-d');
+        $project->update($form_data);
+        return redirect()->route('admin.technologies.show', $project);
     }
 
     /**

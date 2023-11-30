@@ -11,12 +11,7 @@
         </div>
     @endif
 
-    @if (session('success'))
-        <div class="alert alert-success" role="alert">
-            {{ session('success') }}
-        </div>
-    @endif
-
+    <h4 class="py-3">Nuovo Progetto <a class="btn btn-primary" href="{{route('admin.projects.create')}}"><i class="fa-solid fa-plus"></i></a></h4>
     <table class="table">
         <thead>
           <tr>
@@ -31,7 +26,7 @@
                 <tr>
                     <td>{{ $project->id }}</td>
                     <td>{{ $project->name }}</td>
-                    <td>Tipo: {{ $project->date_updated }} </td>
+                    <td>{{ $project->date_updated }} </td>
                     <td>
                         <a href="{{route('admin.projects.show', $project)}}" class="btn btn-success "><i class="fa-solid fa-eye"></i></a>
                         <a href="{{route('admin.projects.edit', $project)}}" class="btn btn-warning "><i class="fa-solid fa-pencil"></i></a>
