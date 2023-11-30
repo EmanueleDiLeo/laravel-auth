@@ -33,6 +33,8 @@
                     <td>{{ $project->name }}</td>
                     <td>Tipo: {{ $project->date_updated }} </td>
                     <td>
+                        <a href="{{route('admin.projects.show', $project)}}" class="btn btn-success "><i class="fa-solid fa-eye"></i></a>
+                        <a href="{{route('admin.projects.edit', $project)}}" class="btn btn-warning "><i class="fa-solid fa-pencil"></i></a>
                         @include('admin.partials.form-delete',[
                             'route' => route('admin.projects.destroy', $project),
                             'message' => 'Sei sicuro di voler eliminare questo progetto?',

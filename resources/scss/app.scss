@@ -23,6 +23,7 @@ aside{
     height: 100%;
     ul{
         list-style: none;
+        // padding-left: 0;
         li{
             padding: 10px 0;
             a{
@@ -30,6 +31,8 @@ aside{
                 text-decoration: none;
                 &:hover{
                     border-bottom: 1px solid white;
+                    // display: inline-block;
+                    // width: 100%;
                 }
                 &.active{
                     border-bottom: 3px solid white;

@@ -27,6 +27,8 @@
                     <td>{{ $technology->name }}</td>
                     <td>{{ $technology->date_updated }} </td>
                     <td>
+                        <a href="{{route('admin.technologies.show', $technology)}}" class="btn btn-success "><i class="fa-solid fa-eye"></i></a>
+                        <a href="{{route('admin.technologies.edit', $technology)}}" class="btn btn-warning "><i class="fa-solid fa-pencil"></i></a>
                         @include('admin.partials.form-delete',[
                             'route' => route('admin.technologies.destroy', $technology),
                             'message' => 'Sei sicuro di voler eliminare questa tecnologia?',

@@ -31,24 +31,17 @@ class TypeController extends Controller
      */
     public function store(Request $request)
     {
-        $val_data = $request->validate([
-            'name' => 'required|min:2|max:100',
-        ],[
-            'name.required' => 'Devi inserire il nome della categoria',
-            'name.min' => 'Il nome della categoria deve essere minimo 2 caratteri',
-            'name.max' => 'Il nome della categoria deve essere massimo 20 caratteri'
-        ]);
 
         $exists = Type::where('name', $request->name)->first();
         if ($exists) {
-            return redirect()->back()->with(['error', 'Tipo già esistente']);
+            return redirect()->back()->with('error', 'Tipo già esistente');
         }
         else{
             $new_type = new Type();
             $new_type->name = $request->name;
             $new_type->slug = Helper::generateSlug($request->name, Type::class);
             $new_type->save();
-            return redirect()->back()->with(['success', 'Tipo creato con successo']);
+            return redirect()->back()->with('success', 'Tipo creato con successo');
         }
     }
 
