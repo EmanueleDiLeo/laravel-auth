@@ -2,6 +2,14 @@
 
 @section('content')
 <div class="container">
+
+    {{-- stampo l'alert solo se esiste la variabile di sessione inviata dal metodo destroy del controller --}}
+    @if (session('deleted'))
+    <div class="alert alert-success" role="alert">
+        {{ session('deleted') }}
+    </div>
+    @endif
+
     <h1 class="text-center my-5">Lista Tipi</h1>
     <table class="table">
         <thead>
@@ -16,7 +24,12 @@
                 <tr>
                     <td>{{ $type->id }}</td>
                     <td>{{ $type->name }}</td>
-                    <td> X </td>
+                    <td>
+                        @include('admin.partials.form-delete',[
+                            'route' => route('admin.types.destroy', $type),
+                            'message' => 'Sei sicuro di voler eliminare questo tipo?',
+                        ])
+                    </td>
                 </tr>
             @endforeach
 

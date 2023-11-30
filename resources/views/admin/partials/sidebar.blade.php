@@ -1,10 +1,10 @@
 <aside class="bg-dark">
      <nav>
          <ul>
-            <li><a href="{{ route('adminhome')}}">Dashboard</a></li>
-            <li><a href="{{ route('adminprojects.index')}}">Lista Progetti</a></li>
-            <li><a href="{{ route('admintechnologies.index')}}">Lista Tecnologie</a></li>
-            <li><a href="{{ route('admintypes.index')}}">Lista Tipi</a></li>
+            <li><a href="{{ route('admin.home')}}">Dashboard</a></li>
+            <li><a href="{{ route('admin.projects.index')}}">Lista Progetti</a></li>
+            <li><a href="{{ route('admin.technologies.index')}}">Lista Tecnologie</a></li>
+            <li><a href="{{ route('admin.types.index')}}">Lista Tipi</a></li>
          </ul>
      </nav>
 </aside>

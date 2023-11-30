@@ -15,9 +15,8 @@ return new class extends Migration
             $table->id();
 
             $table->string('name',100);
-            $table->string('version',100)->nullable();
+            $table->decimal('version',6,3)->nullable();
             $table->text('description');
-            $table->date('date_created');
             $table->date('date_updated');
             $table->string('slug', 100)->unique();
 

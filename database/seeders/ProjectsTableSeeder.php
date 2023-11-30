@@ -18,9 +18,8 @@ class ProjectsTableSeeder extends Seeder
         for($i=0; $i<30; $i++){
             $new_project = new Project();
             $new_project->name = $faker->name();
-            $new_project->version = $faker->randomFloat(2, 2, 4);
-            $new_project->description = $faker->words(3, true);
-            $new_project->date_created = $faker->date();
+            $new_project->version = $faker->randomFloat(2, 3, 5);
+            $new_project->description = $faker->words(300,true);
             $new_project->date_updated = $faker->date();
             $new_project->slug = Project::generateSlug($new_project->name);
 
