@@ -3,14 +3,20 @@
 @section('content')
 <div class="container">
 
-    {{-- stampo l'alert solo se esiste la variabile di sessione inviata dal metodo destroy del controller --}}
+    <h1 class="text-center my-4">Lista Progetti</h1>
+
     @if (session('deleted'))
-    <div class="alert alert-success" role="alert">
-        {{ session('deleted') }}
-    </div>
+        <div class="alert alert-success" role="alert">
+            {{ session('deleted') }}
+        </div>
     @endif
 
-    <h1 class="text-center my-5">Lista Progetti</h1>
+    @if (session('success'))
+        <div class="alert alert-success" role="alert">
+            {{ session('success') }}
+        </div>
+    @endif
+
     <table class="table">
         <thead>
           <tr>

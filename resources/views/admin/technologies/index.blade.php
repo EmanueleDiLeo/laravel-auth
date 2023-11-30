@@ -3,14 +3,14 @@
 @section('content')
 <div class="container">
 
-    {{-- stampo l'alert solo se esiste la variabile di sessione inviata dal metodo destroy del controller --}}
+    <h1 class="text-center my-4">Lista tecnologie</h1>
+
     @if (session('deleted'))
-    <div class="alert alert-success" role="alert">
-        {{ session('deleted') }}
-    </div>
+        <div class="alert alert-success" role="alert">
+            {{ session('deleted') }}
+        </div>
     @endif
 
-    <h1 class="text-center my-5">Lista tecnologie</h1>
     <table class="table">
         <thead>
           <tr>
@@ -25,7 +25,7 @@
                 <tr>
                     <td>{{ $technology->id }}</td>
                     <td>{{ $technology->name }}</td>
-                    <td>Tipo: {{ $technology->date_updated }} </td>
+                    <td>{{ $technology->date_updated }} </td>
                     <td>
                         @include('admin.partials.form-delete',[
                             'route' => route('admin.technologies.destroy', $technology),
