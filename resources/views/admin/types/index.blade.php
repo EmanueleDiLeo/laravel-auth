@@ -2,7 +2,7 @@
 
 @section('content')
 
-<div class="container p-5">
+<div class="container">
 
     <h1 class="text-center my-4">Lista Tipi</h1>
 

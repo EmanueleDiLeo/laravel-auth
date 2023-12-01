@@ -19,7 +19,10 @@ iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H
 
     <div class="main-wrapper d-flex">
         @include('admin.partials.sidebar')
-        @yield('content')
+        <div class="p-5 overflow-auto w-100">
+            @yield('content')
+        </div>
+
     </div>
 </body>
 </html>

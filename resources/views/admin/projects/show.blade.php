@@ -5,7 +5,7 @@
 @extends('layouts.admin')
 
 @section('content')
-<div class="container p-5">
+<div class="container">
     <div class="card p-5">
         <h1>{{ $project->name }}</h1>
         <p>Data ultimo aggiornamento: {{ Helper::formatDate($project->date_updated) }}</p>

@@ -2,7 +2,7 @@
 
 @section('content')
 
-<div class="container p-5">
+<div class="container">
     <h1 class="py-3">{{ $title }}</h1>
 
     @if($errors->any())
@@ -44,7 +44,7 @@
                     id="date_updated"
                     class="form-control @error('date_updated') is-invalid @enderror"
                     name="date_updated"
-                    type="text"
+                    type="date"
                     value="{{ old('reading_time', $technology?->date_updated) }}"
                     >
                     @error('date_updated')
