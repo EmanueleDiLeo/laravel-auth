@@ -2,7 +2,7 @@
 
 @section('content')
 
-<div class="container">
+<div class="container p-5">
 
     <h1 class="text-center my-4">Lista Tipi</h1>
 
@@ -61,7 +61,7 @@
                         <form
                               action="{{ route('admin.types.update', $type) }}"
                               method="POST"
-                              id="form-edit"
+                              id="form-edit-{{ $type->id }}"
                             >
                                 @csrf
                                 @method('PUT')
@@ -69,7 +69,7 @@
                             </form>
                     </td>
                     <td>
-                        <button onclick="submitForm()" class="btn btn-warning" id="button-addon2"><i class="fa-solid fa-pencil"></i></button>
+                        <button onclick="submitForm({{ $type->id }})" class="btn btn-warning" id="button-addon2"><i class="fa-solid fa-pencil"></i></button>
                         @include('admin.partials.form-delete',[
                             'route' => route('admin.types.destroy', $type),
                             'message' => 'Sei sicuro di voler eliminare questo tipo?',
@@ -85,8 +85,8 @@
 </div>
 
 <script>
-    function submitForm(){
-        const form = document.getElementById('form-edit');
+    function submitForm(id){
+        const form = document.getElementById('form-edit-'+id);
         form.submit();
     }
 </script>

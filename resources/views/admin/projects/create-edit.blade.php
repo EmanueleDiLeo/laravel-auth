@@ -2,7 +2,7 @@
 
 @section('content')
 
-<div class="container py-3">
+<div class="container p-5">
     <h1 class="py-3">{{ $title }}</h1>
 
     @if($errors->any())
@@ -58,7 +58,7 @@
                     class="form-control @error('version') is-invalid @enderror"
                     name="version"
                     type="text"
-                    value="{{ old('image', $project?->version) }}"
+                    value="{{ old('version', $project?->version) }}"
                     >
                     @error('version')
                         <p class="text-danger">{{ $message }}</p>

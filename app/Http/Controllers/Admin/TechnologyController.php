@@ -38,7 +38,6 @@ class TechnologyController extends Controller
     {
         $form_data = $request->all();
         $form_data['slug'] = Helper::generateSlug($form_data['name'], Technology::class);
-
         $new_technology = Technology::create($form_data);
         return redirect()->route('admin.technologies.show' , $new_technology);
     }

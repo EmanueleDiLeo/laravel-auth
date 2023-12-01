@@ -37,11 +37,11 @@ class ProjectController extends Controller
     public function store(ProjectRequest $request)
     {
         $form_data = $request->all();
+
         $form_data['slug'] = Helper::generateSlug($form_data['name'], Project::class);
-        $form_data['date'] = date('Y-m-d');
 
         $new_project = Project::create($form_data);
-        return redirect()->route('admin.technologies.show' , $new_project);
+        return redirect()->route('admin.projects.show' , $new_project);
     }
 
     /**
@@ -74,9 +74,8 @@ class ProjectController extends Controller
         }else{
             $form_data['slug'] = $project->slug;
         }
-        $form_data['date'] = date('Y-m-d');
         $project->update($form_data);
-        return redirect()->route('admin.technologies.show', $project);
+        return redirect()->route('admin.projects.show', $project);
     }
 
     /**
